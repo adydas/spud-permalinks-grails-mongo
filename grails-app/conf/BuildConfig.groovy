@@ -15,13 +15,14 @@ grails.project.dependency.resolution = {
     repositories {
         grailsCentral()
         grailsPlugins()
+        mavenLocal()
         mavenCentral()
     }
 
     plugins {
         if(System.getProperty('plugin.mode') != 'local') {
             runtime ":spud-core:0.6.0"
-            runtime(':hibernate4:4.3.5.4') {
+            runtime(':mongodb:3.0.3') {
                 export = false
             }
 

@@ -2,7 +2,6 @@ package spud.permalinks
 
 
 import grails.util.GrailsNameUtils
-import org.hibernate.criterion.CriteriaSpecification
 import grails.plugin.cache.CacheEvict
 import grails.plugin.cache.Cacheable
 
@@ -71,16 +70,20 @@ class SpudPermalinkService {
 
   @Cacheable('spud.permalinks.site')
   def permalinksForSite(siteId) {
-      def permalinks = SpudPermalink.withCriteria(readOnly:true) {
-        eq('siteId', siteId)
-        resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
 
-        projections {
-          property('siteId','siteId')
-          property('urlName','urlName')
-          property('destinationUrl','destinationUrl')
-        }
-      }
+      def permalinks = SpudPermalink.findBySiteId(siteId)
+
+
+//      def permalinks = SpudPermalink.withCriteria(readOnly:true) {
+//        eq('siteId', siteId)
+//        resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
+//
+//        projections {
+//          property('siteId','siteId')
+//          property('urlName','urlName')
+//          property('destinationUrl','destinationUrl')
+//        }
+//      }
   }
 
 
