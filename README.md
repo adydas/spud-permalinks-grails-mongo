@@ -1,0 +1,1 @@
+# spud-permalinks-grails-mongo
